@@ -1,3 +1,9 @@
+This is a fork of MakeMeAnAdmin at https://github.com/jamf/MakeMeAnAdmin
+
+Problems with the original script is that it had not been updated in 5 years. Apple is depricating bash and the original script uses bash. This script has been rewritten to remove bashisms and use POSIX compliant shell, to make it future proof. The $userToRemove.logarchive file was not being written at the exit of the script, resulting in nothing being logged during the time the user was an admin, which is a security risk as there is not review mechanism for knowing what they did while they were an admin. The last thing that was changed was to leverage JAMF's usage of prefilled script parameters, parameter $3 is the currently logged in user, so I replaced the sections where we grb the currently logged in username, with the $3 parameter to add consistency for my fellow JAMF admins. 
+
+----------------------------------------------------------------------------------
+
 Make Me an Admin!
 
 This script, when run, will allow a standard user to upgrade themselves to an admin for 30 minutes and then will grab a snapshot of the logs for the past 30 minutes as well so you can track what they did. 
