@@ -14,6 +14,7 @@ New Commands:
 
 launchctl bootstrap
 launchctl bootout
+
 2. Enhanced Logging:
 The new script ensures that all administrative activities performed by the temporarily elevated user are logged and stored securely. Furthermore, the logs are compressed for space efficiency, and older logs are automatically cleaned up after six months.
 
