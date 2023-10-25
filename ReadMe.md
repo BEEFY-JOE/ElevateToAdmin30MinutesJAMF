@@ -1,6 +1,5 @@
 This is a fork of MakeMeAnAdmin at https://github.com/jamf/MakeMeAnAdmin
 
-Introduction
 This document discusses the modernization of a macOS script designed explicitly for use with JAMF Self Service. The script grants temporary admin rights to users. The original script, last updated five years ago, contained outdated commands and lacked several essential features ensuring optimal security and user experience. Here, we'll outline the changes made and the benefits of the updated script.
 
 Changes Made
