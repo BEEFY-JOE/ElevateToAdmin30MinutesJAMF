@@ -1,29 +1,34 @@
-This is a fork of MakeMeAnAdmin at https://github.com/jamf/MakeMeAnAdmin
+# Temporary Admin Rights for JAMF Self Service
 
-This document discusses the modernization of a macOS script designed explicitly for use with JAMF Self Service. The script grants temporary admin rights to users. The original script, last updated five years ago, contained outdated commands and lacked several essential features ensuring optimal security and user experience. Here, we'll outline the changes made and the benefits of the updated script.
+This script offers a streamlined and secure method for granting users temporary administrative rights through the JAMF Self Service. With a strong emphasis on modern command structures, precise logging, efficient cleanup, and user interaction, it provides an effective solution for administrators who want to empower their users temporarily without compromising system integrity.
 
-Changes Made
-1. Updated macOS Commands:
-The old script used legacy macOS commands, which might not be compatible with newer macOS versions. Apple has since introduced newer commands for managing services.
+## Description
 
-Old Commands:
+Originally based on a script that was last updated five years ago, this revised version introduces significant enhancements:
 
-launchctl load
-launchctl unload
+1. **Modern Command Implementation**: Deprecated commands (`load` & `unload`) have been replaced with their contemporary counterparts (`bootstrap` & `bootout`), ensuring compatibility with the latest macOS versions.
+  
+2. **User Confirmation**: Before administrative rights are granted, users are presented with a confirmation dialog. This step ensures that users are consciously accepting the elevated permissions and are aware of the associated responsibilities.
+  
+3. **Efficient Logging**: The script incorporates a robust logging system that captures all administrative actions performed during the temporary admin session. For optimal storage, the logs are compressed, and older archives are automatically purged after six months.
+  
+4. **Thorough Cleanup**: All residues from previous script runs, such as lingering LaunchDaemons and the `removeAdmin` script, are diligently identified and removed. This cleanup process ensures a clean and conflict-free system environment.
+  
+5. **Direct User Identification**: The revised script accepts the username directly as a parameter, eliminating any inaccuracies or inconsistencies that might arise from the older `who` command.
 
-New Commands:
+## Credits
 
-launchctl bootstrap
-launchctl bootout
+This modernization effort has been a collaborative initiative. Special thanks to:
 
-2. Enhanced Logging:
-The new script ensures that all administrative activities performed by the temporarily elevated user are logged and stored securely. Furthermore, the logs are compressed for space efficiency, and older logs are automatically cleaned up after six months.
+- **Pico** from MacAdmins Slack for invaluable insights and guidance throughout the process.
 
-3. Improved Cleanup:
-The script has been enhanced to ensure that any old instances of the LaunchDaemon and the removeAdmin script are correctly identified and removed. This change prevents any clutter or potential conflicts with older versions.
+## Usage
 
-4. User Confirmation:
-In the old script, admin rights were granted without explicit user agreement. Now, a dialog is presented to the user, asking them to agree to the temporary admin elevation. If the user doesn't confirm within 60 seconds, the script will not elevate their privileges. This step ensures that the user is aware of the action and the associated responsibilities.
+This script is designed explicitly for integration with JAMF Self Service. To deploy:
 
-Conclusion
-The new script, tailored for JAMF Self Service, offers a safer, more efficient, and user-friendly approach to granting temporary admin rights. It uses modern macOS commands, incorporates enhanced logging, and ensures that old data and scripts are properly cleaned up. Moreover, it seeks user confirmation before proceeding, ensuring the user is always in control and aware of their actions within the JAMF environment.
+1. Ensure the JAMF Self Service is correctly set up in your environment.
+2. Add the script to your JAMF Self Service policies.
+3. Define the necessary parameters and triggers.
+4. Deploy to target machines.
+
+**Note**: Always test scripts in a controlled environment before rolling out to production systems.
